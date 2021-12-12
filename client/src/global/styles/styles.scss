@@ -1,0 +1,54 @@
+* {
+  box-sizing:border-box;
+  font-family:arial;
+  margin:0px;
+}
+
+body { 
+  background-image:linear-gradient((to right, #F9D423, #FF4E50));
+}
+
+//VARIABLES
+:root {
+  --modal-z-index:100;
+}
+
+//TURN PLACEHOLDERS WHITE
+::placeholder {
+  color: white;
+  opacity:.8; 
+}
+
+:-ms-input-placeholder { 
+ color: white;
+ opacity:.8; 
+}
+
+::-ms-input-placeholder { 
+ color: white;
+ opacity:.8; 
+}
+
+//METHODS TO MANIPULATE FORMS
+.form {
+  width:450px;
+}
+
+//METHODS TO CREATE EFFECTS
+.less-brightness-on-hover-or-click {
+
+  &:hover {
+    filter:brightness(90%);
+    cursor:pointer;
+  }
+
+  &:active {
+    filter:brightness(80%);
+  }
+}
+
+@media(max-width:450px) {
+  .form {
+    width:100%;
+  }
+}

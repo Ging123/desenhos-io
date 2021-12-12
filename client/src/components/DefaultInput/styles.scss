@@ -1,0 +1,48 @@
+.default-input-container {
+  position:relative;
+  width:100%;
+}
+
+.default-input {
+  border:1px solid white;
+  border-radius:100px;
+  background:transparent;
+  color:white;
+  font: {
+    color:black;
+    size:18px;
+  }
+  padding:10px 35px;
+  width:100%;
+
+  &:focus {
+    outline:none;
+  }
+}
+
+.default-input-icone {
+  color:white;
+  font-size:18px;
+  position:absolute;
+  top:49%;
+  transform:translateY(-50%);
+}
+
+.left-icone {
+  @extend .default-input-icone;
+  left:10px;
+}
+
+.password-eye {
+  @extend .default-input-icone;
+  cursor:pointer;
+  right:15px;
+
+  &:hover {
+    filter:brightness(90%);
+  }
+
+  &:active {
+    filter:brightness(80%);
+  }
+}

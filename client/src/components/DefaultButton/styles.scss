@@ -1,0 +1,21 @@
+.default-button {
+  background:white;
+  border:none;
+  border-radius:100px;
+  color:#FF4E50;
+  cursor:pointer;
+  padding:10px;
+  font: {
+    size:18px;
+    weight:600;
+  }
+  width:100%;
+
+  &:hover {
+    filter:brightness(90%);
+  }
+
+  &:active {
+    filter:brightness(80%);
+  }
+}
