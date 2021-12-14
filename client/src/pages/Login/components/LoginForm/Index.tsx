@@ -1,6 +1,7 @@
 import DefaultButton from '../../../../components/DefaultButton/Index';
 import DefaultInput from '../../../../components/DefaultInput/Index';
 import Error from '../../../../components/Error/Index';
+import { useNavigate } from 'react-router-dom';
 import { FormEvent, useState } from 'react';
 import Request from './services/login';
 
@@ -8,12 +9,14 @@ const LoginForm = () => {
   const [emailOrUsername, setEmailOrUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   async function send(e:FormEvent) {
     try {
       e.preventDefault();
       const user = new Request(emailOrUsername, password);
       await user.login();
+      navigate('/home');
     }
     catch(err:any) {
       setError(err);

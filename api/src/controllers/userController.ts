@@ -67,10 +67,10 @@ route.post('/login', async (req, res) => {
 });
 
 //GET NEW ACCESS AND REFRESH TOKEN 
-route.put('/newTokens', authRefreshToken, async (req:any, res) => {
+route.post('/newTokens', authRefreshToken, async (req:any, res) => {
   try {
     const user = new UpdateTokensUseCase();
-    await user.updateTokens(req.user.email, req.body.refreshToken)
+    await user.updateTokens(req.user, req.refreshToken)
     .then((tokens) => res.status(201).json(tokens))
   }
   catch(err:any) {
@@ -83,7 +83,7 @@ route.put('/newTokens', authRefreshToken, async (req:any, res) => {
 route.delete('/logout', authRefreshToken, async (req:any, res) => {
   try {
     const user = new LogoutUseCase();
-    await user.logout(req.user.email);
+    await user.logout(req.user);
     res.status(204).send();
   }
   catch(err:any) {
@@ -94,7 +94,13 @@ route.delete('/logout', authRefreshToken, async (req:any, res) => {
 
 //GET DATA OF THE USER
 route.get('/', authAccessToken, async (req:any, res) => {
-  res.status(200).json(req.user);
+  const user = req.user;
+  const userData = {
+    email:user.email,
+    username:user.username,
+    currentRoom:user.currentRoom
+  }
+  res.status(200).json(userData);
 });
 
 module.exports = route;

@@ -1,6 +1,9 @@
 import './styles.scss';
 
 interface props {
+  background?:string;
+  border?:string;
+  color?:string;
   content?:string;
   margin?:string;
   onClick?:() => void;
@@ -8,7 +11,12 @@ interface props {
 }
 
 const DefaultButton = (props:props) => {
-  const styles = { margin:props.margin };
+  const styles = { 
+    background:props.background, 
+    border:props.border,
+    color:props.color,
+    margin:props.margin 
+  };
 
   return (
     <button 

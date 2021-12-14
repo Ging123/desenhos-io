@@ -1,0 +1,24 @@
+.flex {
+  align-items:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+#home-page {
+  @extend .flex;
+  flex-direction:column;
+  height:100vh;
+  width:100%;
+}
+
+#home-page > div {
+  @extend .flex;
+  width:450px;
+}
+
+@media (max-width:450px) {
+  #home-page {
+    width:100%;
+  }
+}

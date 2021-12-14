@@ -5,7 +5,7 @@ import Token from '../util/token';
 
 export default class UserModel extends UserCollection {
 
-  private readonly accessTokenTime = '10m';
+  private readonly accessTokenTime = '20m';
   private readonly secret = new SecretModel();
   private readonly encrypt = new Encrypt();
   private readonly token = new Token(this.accessTokenTime);
@@ -46,7 +46,7 @@ export default class UserModel extends UserCollection {
   //METHOD TO UPDATE REFRESH AND ACCESS TOKENS
   public async updateTokens(user:any) {
     let tokens:any;
-    await this.token.create(user).then((newTokens) => tokens = newTokens);;
+    await this.token.create(user).then((newTokens) => tokens = newTokens);
     await this.addNewRefreshToken(user, tokens.refreshToken);
     return this.refreshTokenAndAccessToken(tokens);
   }
@@ -60,6 +60,12 @@ export default class UserModel extends UserCollection {
   //METHOD TO DELETE AN USER
   public async delete(email:string) {
     await this.deleteOneByEmail(email)
+  }
+
+  //METHOD TO ADD A ROOM TO AN USER
+  public async addRoom(user:any, roomId:any) {
+    user.currentRoom = roomId;
+    await user.save();
   }
 
   //METHODS TO WORK WITH TOKENS

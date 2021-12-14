@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
 import exception from "../util/exception";
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 interface user {
@@ -35,6 +35,9 @@ export default class UserCollection {
     },
     confirmed: {
       type:Boolean
+    },
+    currentRoom: {
+      type: mongoose.Schema.Types.ObjectId
     }
   });
 
