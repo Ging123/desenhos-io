@@ -10,7 +10,7 @@ export default class Request {
   public get(url:string, params?:object, headers?:any) {
     return new Promise(async (sucess, reject) => {
       await axios.get(url, {params:params, headers:headers})
-      .then((response) => sucess(response.data))
+      .then((response) => {sucess(response.data)})
       .catch((err) => reject(err.request));
     });
   }

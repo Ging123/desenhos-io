@@ -11,5 +11,7 @@ export default async function logout(navigate:NavigateFunction) {
   const tokens = token.get();
   await req.delete(url, {}, {"Authorization":tokens.refreshToken});
   token.delete();
+  localStorage.removeItem("user");
+  localStorage.removeItem("room");
   navigate('/');
 }

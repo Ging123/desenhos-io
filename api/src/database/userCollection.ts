@@ -35,9 +35,6 @@ export default class UserCollection {
     },
     confirmed: {
       type:Boolean
-    },
-    currentRoom: {
-      type: mongoose.Schema.Types.ObjectId
     }
   });
 

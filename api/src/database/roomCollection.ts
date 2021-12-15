@@ -26,6 +26,13 @@ export default class RoomCollection {
     });
   }
 
+  public findOneFreeRoom() {
+    return new Promise(async (sucess) => {
+      await this.roomModel.findOne({'players_inside':{$lt:10}})
+      .then((room) => sucess(room));
+    });
+  }
+
   protected deleteOneById(id:any) {
     return new Promise(async (sucess) => {
       await this.roomModel.deleteOne({'_id':id})

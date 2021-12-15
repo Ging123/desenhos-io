@@ -85,7 +85,7 @@ route.delete('/logout', authRefreshToken, async (req:any, res) => {
     const user = new LogoutUseCase();
     await user.logout(req.user);
     res.status(204).send();
-  }
+  } 
   catch(err:any) {
     err = verifyIfIsAnInternalException(err);
     res.status(err.status).json(err.message);
@@ -97,8 +97,7 @@ route.get('/', authAccessToken, async (req:any, res) => {
   const user = req.user;
   const userData = {
     email:user.email,
-    username:user.username,
-    currentRoom:user.currentRoom
+    username:user.username
   }
   res.status(200).json(userData);
 });

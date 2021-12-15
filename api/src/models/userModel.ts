@@ -22,7 +22,7 @@ export default class UserModel extends UserCollection {
   //METHODS TO SEND CODE TO CONFIRM EMAIL
   public async sendSecretCodeToConfirmEmail(email:string) {
     await this.secret.save(email);
-    if(process.env.MODE === 'PRO') await this.secret.sendInEmail(email);
+    await this.secret.sendInEmail(email);
   }
 
   //METHOD TO CONFIRM EMAIL
@@ -60,12 +60,6 @@ export default class UserModel extends UserCollection {
   //METHOD TO DELETE AN USER
   public async delete(email:string) {
     await this.deleteOneByEmail(email)
-  }
-
-  //METHOD TO ADD A ROOM TO AN USER
-  public async addRoom(user:any, roomId:any) {
-    user.currentRoom = roomId;
-    await user.save();
   }
 
   //METHODS TO WORK WITH TOKENS

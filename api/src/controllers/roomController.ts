@@ -1,17 +1,17 @@
 import { verifyIfIsAnInternalException } from '../util/exception';
-import InsertUseCase from '../use_cases/room/insertUseCase';
 import { authAccessToken } from '../middlewares/authJwt';
+import GetUseCase from '../use_cases/room/getUseCase';
 import express from 'express';
 
 const route = express.Router();
 
-//ROUTE TO INSERT A NEW GROUP
-route.post('/', authAccessToken, async (req:any, res) => {
+//ROUTE TO JOIN TO A ROOM
+route.get('/', authAccessToken, async (req:any, res) => {
   try {
-    const userThatAreCreatingTheRoom = req.user;
-    const room = new InsertUseCase();
-    await room.insert(userThatAreCreatingTheRoom);
-    res.status(201).send();
+    const room = new GetUseCase();
+    await room.get().then((roomData) => {
+      res.status(201).json(roomData);
+    });
   }
   catch(err:any) {
     err = verifyIfIsAnInternalException(err);

@@ -1,5 +1,7 @@
 import Validator from "../../../../../global/services/validator";
+import getUser from "../../../../../global/services/getUser";
 import Token from "../../../../../global/services/tokens";
+import { NavigateFunction } from "react-router-dom";
 import config from '../../../../../config';
 import axios from "axios";
 
@@ -16,14 +18,17 @@ export default class Request {
     this.validateForLogin();
   }
 
-  public async login() {
+  public async login(navigate:NavigateFunction) {
     const url = `${config.API_URL}user/login`;
     const data = {
       emailOrUsername:this.emailOrUsername,
       password:this.password
     }
     await axios.post(url, data)
-    .then((result) => this.token.save(result.data))
+    .then(async (result) => {
+      this.token.save(result.data)
+      await getUser(navigate);
+    })
     .catch((err) => {
       const error = JSON.parse(err.request.response);
       throw error;

@@ -1,0 +1,30 @@
+.chat-input-container {
+  bottom:0px;
+  left:0px;
+  position:absolute;
+  width:100%;
+}
+
+.chat-input {
+  padding:10px 15px;
+  width:100%;
+
+  &:focus {
+    outline:none;
+  }
+
+  &::placeholder {
+    color:black;
+    opacity:.8;
+  }
+
+  &:-ms-input-placeholder {
+    color:black;
+    opacity:.8;
+  }
+
+  &::-ms-input-placeholder {
+    color:black;
+    opacity:.8;
+  }
+}

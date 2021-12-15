@@ -1,0 +1,30 @@
+#chat-page {
+  height:100vh;
+  padding:50px;
+  width:100%;
+}
+
+.chat-container {
+  background:white;
+  padding-bottom:45px;
+  position:relative;
+  height:100%;
+}
+
+.message {
+  font-size:16px;
+  margin-bottom:10px;
+  word-break: break-all;
+}
+
+.message-of-site {
+  @extend .message;
+  color:blue;
+  font-weight:600;
+}
+
+.message-of-sucess {
+  @extend .message;
+  color:green;
+  font-weight:600;
+}

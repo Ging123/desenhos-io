@@ -1,45 +1,37 @@
+import DefaultButton from '../../components/DefaultButton/Index';
 import LogoutIcone from '../../components/LogoutIcone/Index';
-import { useCallback, useEffect, useState } from 'react';
 import Title from '../../components/Title/Index';
 import { useNavigate } from 'react-router-dom';
-import getUser from './services/getUser';
+import { useEffect, useState } from 'react';
+import Room from './services/room';
 import './styles.scss';
-import DefaultButton from '../../components/DefaultButton/Index';
-
-
-interface user {
-  email?:string;
-  username?:string;
-}
+import User from '../../global/services/user';
 
 const Home = () => {
   document.title = "Início";
+  const [user, setUser] = useState<any>()
   const navigate = useNavigate();
-  const [user, setUser] = useState<user>();
+  const room = new Room(navigate);
 
-  const getUserData = useCallback(async () => {
-    await getUser(setUser, navigate);
-  }, [user]);
-  
-  useEffect(() => { getUserData() }, []);
+  useEffect(() => {
+    const user = new User();
+    const userData = user.get();
+    if(!userData) navigate('/');
+    setUser(userData)
+  }, []);
   
   return (
     <div id="home-page">
       <div>
         <Title 
-          content={`Bem vindo, ${user?.username || ""}`}
+          content={`Bem vindo ao random chat ${user?.username}`}
           margin='20px 0px'
         />
         <LogoutIcone/>
         <DefaultButton
-          content='Clique aqui para jogar'
+          content='Entrar em uma sala aleatória'
           margin='20px 0px'
-        />
-        <DefaultButton
-          background='transparent'
-          border='1px solid gray'
-          color='white'
-          content='Criar uma sala'
+          onClick={async () => await room.join()}
         />
       </div>
     </div>
