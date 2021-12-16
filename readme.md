@@ -25,5 +25,12 @@ npm install
 npm run start
 ```
 
+## HOW TO RUN TESTS IN THE API
+For you run tests you just need to run this commands:
+```
+cd api
+npm run test
+```
+
 ## OBJECTIVE
 My object with this code was create simple chat as homework of my course
