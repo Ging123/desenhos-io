@@ -12,16 +12,17 @@ export default class UserModel extends UserCollection {
   
   
   //METHODS TO INSERT USER
-  public async save(userData:any) {
+  public async save(userData:any, testing=false) {
     const user = this.createNewUser(userData);
     await this.encrypt.password(user);
     await this.insert(user);
-    await this.sendSecretCodeToConfirmEmail(user.email);
+    await this.sendSecretCodeToConfirmEmail(user.email, testing);
   }
 
   //METHODS TO SEND CODE TO CONFIRM EMAIL
-  public async sendSecretCodeToConfirmEmail(email:string) {
+  public async sendSecretCodeToConfirmEmail(email:string, testing=false) {
     await this.secret.save(email);
+    if(testing) return;
     await this.secret.sendInEmail(email);
   }
 

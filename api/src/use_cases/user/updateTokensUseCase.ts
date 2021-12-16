@@ -5,8 +5,6 @@ import Base from "./base";
 export default class UpdateTokensUseCase extends Base {
   
   public async updateTokens(user:any, refreshToken:string) {
-    console.log(user)
-    console.log(refreshToken)
     await this.verifyIfTokenIsValid(user.refreshToken, refreshToken);
     return await this.user.updateTokens(user);
   }

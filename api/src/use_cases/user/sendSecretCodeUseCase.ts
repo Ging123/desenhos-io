@@ -3,9 +3,9 @@ import Base from "./base";
 
 export default class SendSecretCodeUseCase extends Base {
 
-  public async sendSecretCodeToConfirmEmail(email:string) {
+  public async sendSecretCodeToConfirmEmail(email:string, testing=false) {
     await this.verifyIfEmailAlredyIsConfirmed(email);
-    return await this.user.sendSecretCodeToConfirmEmail(email);
+    return await this.user.sendSecretCodeToConfirmEmail(email, testing);
   }
 
   private async verifyIfEmailAlredyIsConfirmed(email:string) {

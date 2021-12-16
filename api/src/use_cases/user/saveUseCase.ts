@@ -9,11 +9,11 @@ interface user {
 
 export default class SaveUseCase extends Base {
   
-  public async save(userData:user) {
+  public async save(userData:user, testing=false) {
     this.validatePassword(userData.password);
     this.emailUtil.validate(userData.email);
     await this.verifyIfEmailOrUsernameAlredyExist(userData.email, userData.username);
-    await this.user.save(userData);
+    await this.user.save(userData, testing);
   }
 
   //METHOD TO VALIDATE PASSWORD
